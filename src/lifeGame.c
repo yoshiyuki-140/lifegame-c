@@ -1,33 +1,14 @@
 // coding:utf-8
 // Author : Yoshiyuki Kurose
-// world_size : (width,height) ; 高さと幅の最大値は255 (-1-) ;
-// 8bit int がたの数値の最大値は255 ,2**8==256 これにより(-1-)に書いてあることが定まる
+// world_size : (width,height) ; 高さと幅の最大値は255でないといけない (-1-) ;
+// 8bit int がたの数値の最大値は255 ,2**8==256 これにより(-1-)のような制限がかかる
 
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 
-
-
 // この関数は完成済み
-// bool *allDeath(bool *world, uint8_t *world_size)     # これだとバグが残る
-// 下の書き方だとなぜかコンパイルできた
-void allDeath(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
-{
-    // world_size : [width,height]
-    for (uint8_t y = 0; y < world_size[1]; y++)
-    {
-        for (uint8_t x = 0; x < world_size[0]; x++)
-        {
-            world[y][x] = false;
-        }
-    }
-}
-
-
-
-// この関数はテスト中
-void copyWorld(bool *world, bool *tmp_world, uint8_t *world_size)
+void copyWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], bool tmp_world[world_size[1]][world_size[0]])
 {
     // - worldとtmp_worldは２次元配列のメモリアドレスを格納している
     // - world_sizeはworldとtmp_worldの各次元の配列の長さを格納している長さ2の配列で、
@@ -44,48 +25,20 @@ void copyWorld(bool *world, bool *tmp_world, uint8_t *world_size)
     }
 }
 
-// この関数はテスト中
-uint8_t countCells(bool *world, int8_t *world_size, int8_t x, int8_t y)
+// この関数は完成済み
+void allDeath(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
-    uint8_t count = 0;
-    if (world[(y - 1) % world_size[1]][(x - 1) % world_size[0]] == true)
+    for (uint8_t y = 0; y < world_size[1]; y++)
     {
-        count += 1;
+        for (uint8_t x = 0; x < world_size[0]; x++)
+        {
+            world[y][x] = false;
+        }
     }
-    if (world[(y - 1) % world_size[1]][(x) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y - 1) % world_size[1]][(x + 1) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y) % world_size[1]][(x - 1) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y) % world_size[1]][(x + 1) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y + 1) % world_size[1]][(x - 1) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y + 1) % world_size[1]][(x) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-    if (world[(y + 1) % world_size[1]][(x + 1) % world_size[0]] == true)
-    {
-        count += 1;
-    }
-
-    return count;
 }
 
-// この関数は完成済み
+// 完成済み
 void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
@@ -104,12 +57,64 @@ void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
         }
         printf("\n");
     }
+    // カーソルを左上に動かす
 }
 
-// この関数は作成中
-void update(uint8_t world_size[2],bool world[world_size[1]][world_size[0]])
+// この関数は完成済み
+void createGrider(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
 {
     // world_size : [width,height]
+    // dest       : [x,y] : (座標はガウス平面っぽく指定してね)
+    uint8_t x, y;
+    uint8_t width, height;
 
-    bool tmp_world[world_size[1]][world_size[0]];
+    width = world_size[0];
+    height = world_size[1];
+
+    // ポインタ引数'dest'で指定できる座標は下の文字'a'の位置
+    // .......
+    // ...x...
+    // ...ax..
+    // ..xxx..
+    // .......
+
+    if (dest != NULL) // ここの判定は改善の余地あり!!
+    {
+        x = dest[0];
+        y = dest[1];
+        world[(y - 1) % height][(x - 1) % width] = false;
+        world[(y - 1) % height][(x) % width] = true;
+        world[(y - 1) % height][(x + 1) % width] = false;
+        world[(y) % height][(x - 1) % width] = false;
+        world[(y) % height][(x) % width] = false;
+        world[(y) % height][(x + 1) % width] = true;
+        world[(y + 1) % height][(x - 1) % width] = true;
+        world[(y + 1) % height][(x) % width] = true;
+        world[(y + 1) % height][(x + 1) % width] = true;
+    }
+    else
+    {
+        // c言語にはpythonにあった'デフォルト引数'というシステムがないので
+        // else文を使用してデフォルト引数を定めてみる(うまくいくといいなあ
+        // ここでは
+        // dest : [1,1]
+        // とする
+        x = 1;
+        y = 1;
+        world[(y - 1) % height][(x - 1) % width] = false;
+        world[(y - 1) % height][(x) % width] = true;
+        world[(y - 1) % height][(x + 1) % width] = false;
+        world[(y) % height][(x - 1) % width] = false;
+        world[(y) % height][(x) % width] = false;
+        world[(y) % height][(x + 1) % width] = true;
+        world[(y + 1) % height][(x - 1) % width] = true;
+        world[(y + 1) % height][(x) % width] = true;
+        world[(y + 1) % height][(x + 1) % width] = true;
+    }
+}
+
+// この関数は完成済み
+void resetScreen(uint8_t world_height)
+{
+    printf("\x1b[%iF",world_height);
 }

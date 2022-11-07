@@ -4,22 +4,26 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <unistd.h>
 #include "test.h"
 
 #define WORLD_HEIGHT 10
 #define WORLD_WIDTH 10
+#define DELAY 0.5 // second
 
 int main(int argc, char const *argv[])
 {
     bool world[WORLD_HEIGHT][WORLD_WIDTH];
     bool tmp_world[WORLD_HEIGHT][WORLD_WIDTH];
     uint8_t world_size[] = {WORLD_WIDTH, WORLD_HEIGHT};
-    uint8_t grider_dest[2] = {1,1};
+    uint8_t grider_dest[2] = {1, 1};
 
-    allDeath(world_size,world);
-    printWorld(world_size,world);
-    createGrider(world_size,world,grider_dest);
-    printWorld(world_size,world);
+    allDeath(world_size, world);
+    printWorld(world_size, world);
+    createGrider(world_size, world, grider_dest);
+    usleep((DELAY)*1000000);
+    resetScreen(WORLD_HEIGHT);
+    printWorld(world_size, world);
 
     return 0;
 }
