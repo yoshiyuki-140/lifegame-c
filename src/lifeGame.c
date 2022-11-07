@@ -10,7 +10,9 @@
 
 
 // この関数は完成済み
-bool *allDeath(bool *world, uint8_t *world_size)
+// bool *allDeath(bool *world, uint8_t *world_size)     # これだとバグが残る
+// 下の書き方だとなぜかコンパイルできた
+void allDeath(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
     for (uint8_t y = 0; y < world_size[1]; y++)
@@ -20,12 +22,11 @@ bool *allDeath(bool *world, uint8_t *world_size)
             world[y][x] = false;
         }
     }
-    return world;
 }
 
 
 
-// この関数は完成済み
+// この関数はテスト中
 void copyWorld(bool *world, bool *tmp_world, uint8_t *world_size)
 {
     // - worldとtmp_worldは２次元配列のメモリアドレスを格納している
@@ -43,7 +44,7 @@ void copyWorld(bool *world, bool *tmp_world, uint8_t *world_size)
     }
 }
 
-// この関数は完成済み
+// この関数はテスト中
 uint8_t countCells(bool *world, int8_t *world_size, int8_t x, int8_t y)
 {
     // world_size : [width,height]
@@ -84,10 +85,31 @@ uint8_t countCells(bool *world, int8_t *world_size, int8_t x, int8_t y)
     return count;
 }
 
-bool *update(bool *world, uint8_t *world_size)
+// この関数は完成済み
+void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
+{
+    // world_size : [width,height]
+    for (uint8_t y = 0; y < world_size[1]; y++)
+    {
+        for (uint8_t x = 0; x < world_size[0]; x++)
+        {
+            if (world[y][x] == true)
+            {
+                printf("x");
+            }
+            else
+            {
+                printf(".");
+            }
+        }
+        printf("\n");
+    }
+}
+
+// この関数は作成中
+void update(uint8_t world_size[2],bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
 
     bool tmp_world[world_size[1]][world_size[0]];
-    copyWorld(world, tmp_world, world_size);
 }
