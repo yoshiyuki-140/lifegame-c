@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// この関数は完成済み
+// この関数はテスト中
 void copyWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], bool tmp_world[world_size[1]][world_size[0]])
 {
     // - worldとtmp_worldは２次元配列のメモリアドレスを格納している
@@ -40,6 +40,8 @@ void allDeath(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
     }
 }
 
+
+// 完成済み
 void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
@@ -57,5 +59,60 @@ void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
             }
         }
         printf("\n");
+    }
+    // カーソルを左上に動かす
+}
+
+// この関数は作成中
+void createGrider(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
+{
+    // world_size : [width,height]
+    // dest       : [x,y] : (座標はガウス平面っぽく指定してね)
+    uint8_t x, y;
+    uint8_t width, height;
+
+    width = world_size[0];
+    height = world_size[1];
+
+    // ポインタ引数'dest'で指定できる座標は下の文字'a'の位置
+    // .......
+    // ...x...
+    // ...ax..
+    // ..xxx..
+    // .......
+
+
+    if (dest != NULL)
+    {
+        x = dest[0];
+        y = dest[1];
+            world[(y - 1) % height][(x - 1) % width] = false;
+        world[(y - 1) % height][(x) % width] = true;
+        world[(y - 1) % height][(x + 1) % width] = false;
+        world[(y) % height][(x - 1) % width] = false;
+        world[(y) % height][(x) % width] = false;
+        world[(y) % height][(x + 1) % width] = true;
+        world[(y + 1) % height][(x - 1) % width] = true;
+        world[(y + 1) % height][(x) % width] = true;
+        world[(y + 1) % height][(x + 1) % width] = true;
+    }
+    else
+    {
+        // c言語にはpythonにあった'デフォルト引数'というシステムがないので
+        // else文を使用してデフォルト引数を定めてみる(うまくいくといいなあ
+        // ここでは
+        // dest : [1,1]
+        // とする
+        x = 1;
+        y = 1;
+        world[(y - 1) % height][(x - 1) % width] = false;
+        world[(y - 1) % height][(x) % width] = true;
+        world[(y - 1) % height][(x + 1) % width] = false;
+        world[(y) % height][(x - 1) % width] = false;
+        world[(y) % height][(x) % width] = false;
+        world[(y) % height][(x + 1) % width] = true;
+        world[(y + 1) % height][(x - 1) % width] = true;
+        world[(y + 1) % height][(x) % width] = true;
+        world[(y + 1) % height][(x + 1) % width] = true;
     }
 }
