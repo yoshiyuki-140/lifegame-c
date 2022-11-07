@@ -15,22 +15,8 @@ int main(int argc, char const *argv[])
     bool tmp_world[WORLD_HEIGHT][WORLD_WIDTH];
     uint8_t world_size[] = {WORLD_WIDTH, WORLD_HEIGHT};
 
-    allDeath(world, world_size);
-    for (uint8_t y = 0; y < world_size[1]; y++)
-    {
-        for (uint8_t x = 0; x < world_size[0]; x++)
-        {
-            if (world[y][x] == true)
-            {
-                printf("x");
-            }
-            else
-            {
-                printf(".");
-            }
-        }
-        printf("\n");
-    }
+    allDeath(world_size,world);
+    printWorld(world_size,world);
 
     return 0;
 }
