@@ -10,7 +10,9 @@
 
 
 // この関数は完成済み
-bool *allDeath(bool *world, uint8_t *world_size)
+// bool *allDeath(bool *world, uint8_t *world_size)     # これだとバグが残る下の書き方だと
+// なぜかコンパイルできた
+bool *allDeath(uint8_t world_size[2],bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
     for (uint8_t y = 0; y < world_size[1]; y++)

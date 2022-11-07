@@ -1,3 +1,11 @@
-//
+// coding:utf-8
+// Author : Yoshiyuki Kurose
+// world_size : (width,height) ; 高さと幅の最大値は255 (-1-) ;
+// 8bit int がたの数値の最大値は255 ,2**8==256 これにより(-1-)に書いてあることが定まる
+
 #include <stdint.h>
-int64_t add(int64_t x, int64_t y);
+#include <stdbool.h>
+
+// 関数宣言だけを書いておく
+void copyWorld(uint8_t world_size[2] ,bool world[world_size[1]][world_size[0]], bool tmp_world[world_size[1]][world_size[0]]);
+void allDeath(uint8_t world_size[2],bool world[world_size[1]][world_size[0]]);
