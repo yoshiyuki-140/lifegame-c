@@ -119,9 +119,51 @@ void resetScreen(uint8_t world_height)
     printf("\x1b[%iF", world_height);
 }
 
-// この関数は未完成
-void countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
+// この関数は未完成（テストがまだ
+void countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
 {
+    uint8_t width, height;
+    uint8_t x, y;
+
+    uint8_t count = 0;
+
+    width = world_size[0];
+    height = world_size[1];
+    x = dest[0];
+    y = dest[1];
+
+    if (world[(y - 2) % height][(x - 1) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y - 1) % height][(x) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y - 1) % height][(x + 1) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y) % height][(x - 1) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y) % height][(x + 1) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y + 1) % height][(x - 1) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y + 1) % height][(x) % width] == true)
+    {
+        count++;
+    }
+    if (world[(y + 1) % height][(x + 1) % width] == true)
+    {
+        count++;
+    }
 }
 
 // この関数は未完成
