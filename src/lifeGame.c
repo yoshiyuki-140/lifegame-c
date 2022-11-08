@@ -116,7 +116,7 @@ void createGrider(uint8_t world_size[2], bool world[world_size[1]][world_size[0]
 // この関数は完成済み
 void resetScreen(uint8_t world_height)
 {
-    printf("\x1b[%iF", world_height);
+    printf("\x1b[%iF", world_height-1);
 }
 
 // この関数は未完成（テストがまだ(コンパイルはできた)
@@ -167,7 +167,7 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     return count;
 }
 
-//  この関数は未完成
+//  この関数は未完成(コンパイルはできた)
 bool judge(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
 {
     // この関数はdestで指定指定されたセルが次の時代で生きるか死ぬかを判定する
@@ -190,7 +190,7 @@ bool judge(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint
     return false;
 }
 
-// この関数は未完成
+// この関数は未完成(コンパイルはできた)
 void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
