@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <unistd.h>
-#include "test.h"
+#include "lifeGame.h"
 
 #define WORLD_HEIGHT 10
 #define WORLD_WIDTH 10
