@@ -9,27 +9,27 @@
 
 #define WORLD_HEIGHT 10
 #define WORLD_WIDTH 10
-#define DELAY 2 // second
+#define DELAY 10 // second
 
 int main(int argc, char const *argv[])
 {
-    bool world[WORLD_HEIGHT][WORLD_WIDTH];
-    bool tmp_world[WORLD_HEIGHT][WORLD_WIDTH];
-    uint8_t world_size[] = {WORLD_WIDTH, WORLD_HEIGHT};
-    uint8_t grider_dest[2] = {1, 1};
+    uint8_t world_size[2] = {WORLD_WIDTH, WORLD_HEIGHT};
+    bool world[world_size[1]][world_size[0]];
+    uint8_t grider_dest[2] = {5, 5};    // for init
 
-    usleep((DELAY)*1000000);
 
     // 世界を死で初期化
     allDeath(world_size, world);
     // griderを作成する
     createGrider(world_size, world, grider_dest);
-    for (int i = 0; i < 2; i++)
+    int count = 0;
+    while (true)
     {
         update(world_size, world);
-        printWorld(world_size, world);
-        usleep((DELAY)*1000000);
-        printf("\n");
+        printf("%i",++count);
+        // resetScreen(WORLD_HEIGHT);
+        // usleep((DELAY)*1000000);
+        break;
     }
 
     return 0;
