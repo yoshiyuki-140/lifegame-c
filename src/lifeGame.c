@@ -120,7 +120,7 @@ void resetScreen(uint8_t world_height)
 }
 
 // この関数は未完成（テストがまだ
-void countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
+uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
 {
     uint8_t width, height;
     uint8_t x, y;
@@ -164,6 +164,7 @@ void countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]],
     {
         count++;
     }
+    return count;
 }
 
 // この関数は未完成
