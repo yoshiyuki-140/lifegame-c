@@ -116,11 +116,16 @@ void createGrider(uint8_t world_size[2], bool world[world_size[1]][world_size[0]
 // この関数は完成済み
 void resetScreen(uint8_t world_height)
 {
-    printf("\x1b[%iF",world_height);
+    printf("\x1b[%iF", world_height);
 }
 
 // この関数は未完成
-void update(uint8_t world_size[2],bool world[world_size[1]][world_size[0]])
+void countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
+{
+}
+
+// この関数は未完成
+void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
     // この関数はworldの状態の更新を定義する。
