@@ -167,6 +167,29 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     return count;
 }
 
+//  この関数は未完成
+bool judge(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
+{
+    // この関数はdestで指定指定されたセルが次の時代で生きるか死ぬかを判定する
+    // true  : 次の世代で指定されたセルは生きる
+    // false : 次の世代で指定されたセルは死ぬ
+    // world_size : [width,height]
+    uint8_t count = countCells(world_size, world, dest);
+    if (world[dest[1]][dest[0]])
+    {
+        if (count == 2 || count == 3)
+        {
+            return true;
+        }
+        return false;
+    }
+    if (count == 3)
+    {
+        return true;
+    }
+    return false;
+}
+
 // この関数は未完成
 void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
