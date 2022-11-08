@@ -12,3 +12,4 @@ void allDeath(uint8_t world_size[2],bool world[world_size[1]][world_size[0]]);
 void printWorld(uint8_t world_size[2], bool world[world_size[1]][world_size[0]]);
 void createGrider(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2]);
 void resetScreen(uint8_t world_height);
+void update(uint8_t world_size[2],bool world[world_size[1]][world_size[0]])
