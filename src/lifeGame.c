@@ -132,7 +132,7 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     x = dest[0];
     y = dest[1];
 
-    if (world[(y - 2) % height][(x - 1) % width] == true)
+    if (world[(y - 1) % height][(x - 1) % width] == true)
     {
         count++;
     }
