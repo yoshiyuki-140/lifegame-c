@@ -230,9 +230,9 @@ void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
     }
     // tmp_worldの内容をworldにコピーする
     // ここにバグあり
-    printWorld(world_size, world);
-    printf("befor\n");
+    // printWorld(world_size, world);
+    // printf("befer\n");
     copyWorld(world_size, tmp_world, world);
-    printWorld(world_size, world);
-    printf("aftor\n");
+    // printWorld(world_size, world);
+    // printf("aftore\n");
 }

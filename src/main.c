@@ -9,7 +9,7 @@
 
 #define WORLD_HEIGHT 10
 #define WORLD_WIDTH 10
-#define DELAY 10 // second
+#define DELAY 0.5 // second
 
 int main(int argc, char const *argv[])
 {
@@ -25,11 +25,12 @@ int main(int argc, char const *argv[])
     int count = 0;
     while (true)
     {
+        printf("\x1b[2J");
         update(world_size, world);
+        printWorld(world_size,world);
         printf("%i",++count);
-        // resetScreen(WORLD_HEIGHT);
-        // usleep((DELAY)*1000000);
-        break;
+        resetScreen(WORLD_HEIGHT);
+        usleep((DELAY)*1000000);
     }
 
     return 0;
