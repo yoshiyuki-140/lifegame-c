@@ -203,8 +203,7 @@ void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
     // この関数はworldの状態の更新を定義する。
-    uint8_t dest[2]; // セルの生死を決める時にjudge関数を呼び出す。この時に配列で渡さないといけないから、
-                     // その時に使用する
+    // その時に使用する
     bool tmp_world[world_size[1]][world_size[0]];
     // tmp_worldの初期化
     allDeath(world_size, tmp_world);
@@ -217,7 +216,7 @@ void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
     {
         for (uint8_t x = 0; x < world_size[0]; x++)
         {
-            uint8_t dest[2] = {x, y};
+            uint8_t dest[2] = {x, y}; // セルの生死を決める時にjudge関数を呼び出す。この時に配列で渡さないといけないから、
             if (judge(world_size, world, dest))
             {
                 tmp_world[y][x] = true;
