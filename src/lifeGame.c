@@ -140,6 +140,8 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     x = dest[0];
     y = dest[1];
 
+    //
+    
     if (world[(y - 1) % height][(x - 1) % width] == true)
     {
         count++;
@@ -175,7 +177,7 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     return count;
 }
 
-//  この関数は未完成(コンパイルはできた)
+//  この関数は完成
 bool judge(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint8_t dest[2])
 {
     // この関数はdestで指定指定されたセルが次の時代で生きるか死ぬかを判定する

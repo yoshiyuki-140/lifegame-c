@@ -26,8 +26,8 @@ int main(int argc, char const *argv[])
     while (true)
     {
         printf("\x1b[2J");
-        update(world_size, world);
         printWorld(world_size,world);
+        update(world_size, world);
         printf("%i",++count);
         resetScreen(WORLD_HEIGHT);
         usleep((DELAY)*1000000);
