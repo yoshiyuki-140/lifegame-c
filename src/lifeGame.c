@@ -140,7 +140,18 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     x = dest[0];
     y = dest[1];
 
-    //
+    // x % y == (x + n*y)%y
+    // という性質を使用するためにwhileで数を整える
+    while (x < width)
+    {
+        x += width;
+    }
+    while (y < height)
+    {
+        y += height;
+    }
+    
+    
     
     if (world[(y - 1) % height][(x - 1) % width] == true)
     {
