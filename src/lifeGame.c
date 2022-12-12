@@ -142,6 +142,7 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
 
     // x % y == (x + n*y)%y
     // という性質を使用するためにwhileで数を整える
+
     while (x < width)
     {
         x += width;
@@ -150,7 +151,6 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     {
         y += height;
     }
-    
     
     
     if (world[(y - 1) % height][(x - 1) % width] == true)
@@ -241,10 +241,7 @@ void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
         }
     }
     // tmp_worldの内容をworldにコピーする
-    // ここにバグあり
-    // printWorld(world_size, world);
-    // printf("befer\n");
+    // ここにバグあり <-gccコンパイラに'-O2'つまり最適化オプションを加えると、解決した.
+    // 配列のコピーで失敗するなんでだろーね
     copyWorld(world_size, tmp_world, world);
-    // printWorld(world_size, world);
-    // printf("aftore\n");
 }
