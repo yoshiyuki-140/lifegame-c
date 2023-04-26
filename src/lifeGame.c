@@ -211,7 +211,8 @@ bool judge(uint8_t world_size[2], bool world[world_size[1]][world_size[0]], uint
     return false;
 }
 
-// この関数は未完成(コンパイルはできた)
+// この関数は完成(未テスト) :追記<-ここは関数内のコメントに書いてあるように
+//                               '-O2'最適化オプションをつけたら動いたので完成
 void update(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
 {
     // world_size : [width,height]
