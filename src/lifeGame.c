@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 
 // この関数は完成済み
 void allDeath(uint8_t world_size[2], bool world[world_size[1]][world_size[0]])
@@ -28,22 +29,16 @@ void copyWorld(uint8_t world_size[2], bool in[world_size[1]][world_size[0]], boo
     //   引数として受け取るのはそのメモリアドレス,
     //   この場合,worldの大きさとtmp_worldの大きさは同じでないといけない
     // world_size : [width,height]
+    memcpy(out, in, sizeof(uint8_t) * world_size[0] * world_size[1]);
 
-    for (uint8_t y = 0; y < world_size[1]; y++)
-    {
-        for (uint8_t x = 0; x < world_size[0]; x++)
-        {
-            // tmp_world[y][x] = world[y][x];
-            if (in[y][x])
-            {
-                out[y][x] = true;
-            }
-            else
-            {
-                out[y][x] = false;
-            }
-        }
-    }
+    // for (uint8_t y = 0; y < world_size[1]; y++)
+    // {
+    //     for (uint8_t x = 0; x < world_size[0]; x++)
+    //     {
+    //         // tmp_world[y][x] = world[y][x];
+    //         out[y][x] = in[y][x];
+    //     }
+    // }
 }
 
 // 完成済み
@@ -151,8 +146,7 @@ uint8_t countCells(uint8_t world_size[2], bool world[world_size[1]][world_size[0
     {
         y += height;
     }
-    
-    
+
     if (world[(y - 1) % height][(x - 1) % width] == true)
     {
         count++;
